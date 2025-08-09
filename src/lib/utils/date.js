@@ -1,3 +1,8 @@
+/**
+ * Get an array of all the days in the week for a given date.
+ * @param {Date} date - The date to get the week for.
+ * @returns {Date[]} An array of Date objects for each day in the week.
+ */
 export function getWeekDays(date = new Date()) {
     const days = [];
     const startOfWeek = date.getDate() - date.getDay() + 1;
@@ -9,6 +14,10 @@ export function getWeekDays(date = new Date()) {
     return days;
 }
 
+/** Get an array of all the days in the month for a given date.
+ * @param {Date} date - The date to get the month for.
+ * @returns {Date[]} An array of Date objects for each day in the month.
+ */
 export function getMonthDays(date = new Date()) {
     const days = [];
     const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -21,6 +30,11 @@ export function getMonthDays(date = new Date()) {
     return days;
 }
 
+/**
+ * Get the number of days to fill at the start and end of the month.
+ * @param {Date} date - The date to get the fill days for.
+ * @returns {Object} An object containing the number of fill days from the start and end.
+ */
 export function daysToFill(date) {
     const fillDays = { fromStart: 0, fromEnd: 0 };
     const monthDays = getMonthDays(date);
@@ -34,6 +48,11 @@ export function daysToFill(date) {
     return fillDays;
 }
 
+/**
+ * Get a filled array of all the days in the month for a given date.
+ * @param {Date} date - The date to get the filled month for.
+ * @returns {Array} An array of Date objects for each day in the month, including fill days.
+ */
 export function getFilledMonth(date = new Date()) {
     const monthDays = [];
     const fillDays = daysToFill(date);
@@ -55,6 +74,11 @@ export function getFilledMonth(date = new Date()) {
     return monthDays;
 }
 
+/**
+ * Get an array of all the rows in the month for a given date.
+ * @param {Date} date - The date to get the month rows for.
+ * @returns {Array} An array of arrays, each containing the days in a week. Array size is 6 x 7.
+ */
 export function getMonthRows(date = new Date()) {
     const filledMonth = getFilledMonth(date);
     const rows = [];

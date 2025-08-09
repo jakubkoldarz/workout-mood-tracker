@@ -5,7 +5,6 @@
 
     let { currentDay } = $props();
     const monthRows = getMonthRows(currentDay);
-    console.log(monthRows);
 </script>
 
 <div class="calendar-view flex justify-center gap-2">
