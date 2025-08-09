@@ -15,5 +15,7 @@ body {
 @theme {
     --font-patrick: "Patrick Hand", sans-serif;
     --font-playwrite: "Playwrite HU", sans-serif;
-    --color-glass: oklch(100% 0.00011 271.152 / 0.3);
+    --color-glass: rgba(255, 255, 255, 0.25);
+    --color-pink-150: rgba(238, 174, 202, 1);
+    --color-blue-150: rgba(148, 187, 233, 1);
 }

@@ -14,7 +14,7 @@
     let { data, form } = $props();
 </script>
 
-<section class="p-4 bg-radial from-pink-200 to-pink-100 h-screen">
+<section class="p-4 bg-radial from-pink-150 to-blue-150 h-screen">
     <h1 class="text-3xl font-bold mb-4">Calendar</h1>
     <Calendar />
 </section>
