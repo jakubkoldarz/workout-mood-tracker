@@ -1,3 +1,19 @@
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Playwrite+HU:wght@100..400&display=swap");
+
+@import "tailwindcss";
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+a {
+    @apply text-blue-500 hover:text-blue-700;
+}
+
+body {
+    @apply font-patrick text-gray-800;
+}
+
+@theme {
+    --font-patrick: "Patrick Hand", sans-serif;
+    --font-playwrite: "Playwrite HU", sans-serif;
+    --color-glass: oklch(100% 0.00011 271.152 / 0.3);
+}
