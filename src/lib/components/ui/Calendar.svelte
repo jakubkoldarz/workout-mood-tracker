@@ -16,13 +16,12 @@
 </script>
 
 <section class="calendar">
-    <nav>
-        <button onclick={prevMonth} type="button" class="bg-glass backdrop-blur-lg px-8 py-2 cursor-pointer"
-            >Prev</button
-        >
-        <button onclick={nextMonth} type="button" class="bg-glass backdrop-blur-lg px-8 py-2 cursor-pointer"
-            >Next</button
-        >
+    <nav class="flex justify-center gap-4 items-center">
+        <button onclick={prevMonth} type="button" class="button">Prev</button>
+        <span class="w-32 text-center text-lg">
+            {currentDay.toLocaleDateString("default", { month: "long", year: "numeric" })}
+        </span>
+        <button onclick={nextMonth} type="button" class="button">Next</button>
     </nav>
     <main>
         {#if view === "week"}

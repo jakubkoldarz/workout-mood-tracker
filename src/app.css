@@ -20,6 +20,10 @@ body {
         .empty-day {
             @apply bg-glass/30 hover:scale-100;
         }
+
+        .button {
+            @apply bg-glass backdrop-blur-lg px-6 rounded-md py-1 cursor-pointer active:scale-105 shadow-md transition-all;
+        }
     }
 }
 
