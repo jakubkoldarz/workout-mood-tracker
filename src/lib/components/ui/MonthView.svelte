@@ -1,10 +1,9 @@
 <script>
-    import { getMonthDays, daysToFill, getMonthRows } from "$lib/utils/date";
-    import MonthDay from "./MonthDay.svelte";
+    import { getMonthRows } from "$lib/utils/date";
     import MonthRow from "./MonthRow.svelte";
 
     let { currentDay } = $props();
-    const monthRows = getMonthRows(currentDay);
+    const monthRows = $derived(getMonthRows(currentDay));
 </script>
 
 <div class="calendar-view flex justify-center flex-wrap max-w-[1400px] mx-auto mt-4 gap-4">
