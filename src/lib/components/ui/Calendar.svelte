@@ -1,11 +1,10 @@
 <script>
-    import MonthView from "./MonthView.svelte";
-    import WeekView from "./WeekView.svelte";
+    import MonthView from "./MonthView/MonthView.svelte";
+    import WeekView from "./WeekView/WeekView.svelte";
 
     let { view } = $props();
     let currentDay = $state(new Date());
 
-    $inspect(currentDay);
     const nextMonth = () => {
         currentDay = new Date(currentDay.getFullYear(), currentDay.getMonth() + 1, 1);
     };

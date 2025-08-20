@@ -13,6 +13,5 @@
 </script>
 
 <section class="p-4 bg-radial from-pink-150 to-blue-150 min-h-screen">
-    <h1 class="text-3xl font-bold mb-4">Calendar</h1>
     <Calendar />
 </section>
