@@ -42,6 +42,8 @@ export function flyToCenter(node, { duration, startingPosition, startingSize, fi
 
             node.style.width = `${currentWidth}px`;
             node.style.height = `${currentHeight}px`;
+
+            node.style.opacity = eased_t;
         },
     };
 }

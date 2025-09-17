@@ -2,12 +2,23 @@
     import { modalState } from "$lib/monthModal.svelte.js";
     import { flyToCenter } from "$lib/transitions/flyToCenter";
     import { fade } from "svelte/transition";
+    import EmojiSelect from "./EmojiSelect.svelte";
+    import Description from "./Description.svelte";
 
     let modalElement = $state();
 
+    let mood = $state(null);
+    let description = $state("");
+
     function closeModal() {
         modalState.isModalVisible = false;
-        console.log(modalElement.scrollWidth, modalElement.scrollHeight);
+        localStorage.setItem(
+            modalState.date?.toISOString().split("T")[0], // save only date part as key
+            JSON.stringify({
+                mood,
+                description,
+            })
+        );
     }
 </script>
 
@@ -25,7 +36,6 @@
         bind:this={modalElement}
         tabindex="0"
         role="button"
-        onkeydown={closeModal}
         class="month-day-modal z-10"
         in:flyToCenter={{
             duration: 800,
@@ -46,13 +56,9 @@
             },
         }}
     >
-        <div class="text-2xl text-left pl-2">
-            {modalState.day}
+        <div in:fade={{ duration: 250, delay: 300 }} out:fade={{ duration: 10 }} class="flex flex-col h-full">
+            <EmojiSelect bind:mood />
+            <Description bind:description />
         </div>
-        <span transition:fade={{ duration: 50 }}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus molestiae cum magni eligendi, aliquam
-            facere et consectetur expedita beatae, praesentium optio quis? Vel, debitis quos excepturi dolorum nisi
-            officiis possimus.
-        </span>
     </div>
 {/if}

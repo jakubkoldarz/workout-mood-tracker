@@ -11,6 +11,7 @@
         modalState.isModalVisible = true;
         modalState.coords = { x: rect.left - 25 + rect.width / 2, y: rect.top - 25 + rect.height / 2 };
         modalState.size = { x: rect.width, y: rect.height };
+        modalState.date = day?.date || null;
         modalState.day = day.date?.getDate() || null;
     }
 </script>

@@ -7,7 +7,7 @@
 
 <div class="month-row grid grid-cols-7 w-full gap-4 min-h-[100px]">
     {#each row as day, index (day.id)}
-        <div in:scale={{ duration: 200, delay: day.index * 15 }}>
+        <div in:scale={{ duration: 200, delay: day.index * 10 }}>
             <MonthDay {day} />
         </div>
     {/each}
