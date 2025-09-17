@@ -56,22 +56,23 @@ export function daysToFill(date) {
 export function getFilledMonth(date = new Date()) {
     const monthDays = [];
     const fillDays = daysToFill(date);
-    let currentID = ~~(Math.random() * 10);
+    let currentID = `${date.getFullYear()}-${date.getMonth()}-`;
+    let index = 1;
 
     for (let i = 0; i < fillDays.fromStart; i++) {
-        monthDays.push({ id: currentID++, date: null });
+        monthDays.push({ index, id: currentID + index++, date: null });
     }
 
     getMonthDays(date).forEach((day) => {
-        monthDays.push({ id: currentID++, date: day });
+        monthDays.push({ index, id: currentID + index++, date: day });
     });
 
     for (let i = 0; i < fillDays.fromEnd; i++) {
-        monthDays.push({ id: currentID++, date: null });
+        monthDays.push({ index, id: currentID + index++, date: null });
     }
 
     while (monthDays.length < 42) {
-        monthDays.push({ id: currentID++, date: null });
+        monthDays.push({ index, id: currentID + index++, date: null });
     }
 
     return monthDays;

@@ -15,8 +15,8 @@
             <div class="text-center">{day}</div>
         {/each}
     </div>
-    {#each monthRows as row}
-        <MonthRow {row} />
+    {#each monthRows as row, rowIndex}
+        <MonthRow {row} {rowIndex} />
     {/each}
 </div>
 

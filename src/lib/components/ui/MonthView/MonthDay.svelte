@@ -15,18 +15,10 @@
     }
 </script>
 
-{#key day?.id}
-    {#if day?.date}
-        <button
-            bind:this={element}
-            type="button"
-            onclick={toggleModal}
-            class={["month-day"]}
-            in:scale={{ duration: 200, delay: day.id * 10 }}
-        >
-            <div class="text-2xl text-left pl-2">{day.date?.getDate()}</div>
-        </button>
-    {:else}
-        <div type="button" class={["month-day", "empty-day"]} in:scale={{ duration: 200, delay: day.id * 10 }}></div>
-    {/if}
-{/key}
+{#if day?.date}
+    <button bind:this={element} type="button" onclick={toggleModal} class={["month-day"]}>
+        <div class="text-2xl text-left pl-2">{day.date?.getDate()}</div>
+    </button>
+{:else}
+    <div type="button" class={["month-day", "empty-day"]}></div>
+{/if}
