@@ -48,6 +48,16 @@
         return workoutEmojis[workoutType] || "💪";
     });
 
+    let description = $derived.by(() => {
+        if (!day?.hasData || !day.data) return "";
+        try {
+            const parsed = JSON.parse(day.data);
+            return parsed.description || "";
+        } catch {
+            return "";
+        }
+    });
+
     function toggleModal() {
         const rect = element.getBoundingClientRect();
         modalState.isModalVisible = true;
@@ -85,6 +95,10 @@
                             {workoutEmoji}
                         </div>
                     {/if}
+                </div>
+
+                <div class="text-violet-1000 w-8/12 truncate mt-2 text-left pl-2 line-clamp-2">
+                    {description}
                 </div>
             {/if}
         </button>

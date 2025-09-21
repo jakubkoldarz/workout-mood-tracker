@@ -104,7 +104,7 @@
             startingSize: modalState.size,
             finalSize: {
                 width: 600,
-                height: 855,
+                height: 770,
             },
         }}
         out:flyToCenter={{
@@ -113,7 +113,7 @@
             startingSize: modalState.size,
             finalSize: {
                 width: 600,
-                height: 855,
+                height: 770,
             },
         }}
     >
@@ -174,7 +174,7 @@
 
                 {#if hasWorkout}
                     <div class="grid grid-cols-2 gap-2 mt-3">
-                        {#each [{ value: "gym", emoji: "🏋️", label: "Gym", color: "bg-red-100 text-red-800" }, { value: "running", emoji: "🏃‍♂️", label: "Running", color: "bg-green-100 text-green-800" }, { value: "yoga", emoji: "🧘‍♀️", label: "Yoga", color: "bg-purple-100 text-purple-800" }, { value: "other", emoji: "⚡", label: "Other", color: "bg-gray-100 text-gray-800" }] as workout}
+                        {#each [{ value: "gym", emoji: "🏋️", label: "Climbing", color: "bg-red-100 text-red-800" }, { value: "running", emoji: "🏃‍♂️", label: "Running", color: "bg-green-100 text-green-800" }, { value: "yoga", emoji: "🧘‍♀️", label: "Pilates", color: "bg-purple-100 text-purple-800" }, { value: "other", emoji: "⚡", label: "Other", color: "bg-gray-100 text-gray-800" }] as workout}
                             <button
                                 type="button"
                                 class="workout-btn {workoutType === workout.value ? 'selected' : ''} {workout.color}"
@@ -197,12 +197,12 @@
                 </h3>
                 <textarea
                     bind:value={description}
-                    class="w-full h-24 p-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    class="w-full p-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                     placeholder="What happened today? How are you feeling?"
-                    maxlength="200"
+                    maxlength="50"
                 ></textarea>
                 <div class="text-right text-xs text-gray-500 mt-1">
-                    {description.length}/200
+                    {description.length}/50
                 </div>
             </div>
 
