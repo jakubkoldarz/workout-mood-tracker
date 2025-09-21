@@ -10,15 +10,66 @@
     let mood = $state(null);
     let description = $state("");
 
-    function closeModal() {
-        modalState.isModalVisible = false;
+    // Funkcja do tworzenia klucza dla localStorage
+    function getStorageKey(date) {
+        if (!date) return null;
+        return date.toISOString().split("T")[0];
+    }
+
+    // Funkcja do odczytywania danych z localStorage
+    function loadDayData() {
+        const key = getStorageKey(modalState.date);
+        if (!key) return;
+
+        const savedData = localStorage.getItem(key);
+        if (savedData) {
+            try {
+                const data = JSON.parse(savedData);
+                mood = data.mood || null;
+                description = data.description || "";
+            } catch (e) {
+                console.error("Error parsing saved data:", e);
+                mood = null;
+                description = "";
+            }
+        } else {
+            // Reset wartości jeśli nie ma zapisanych danych
+            mood = null;
+            description = "";
+        }
+    }
+
+    // Funkcja do zapisywania danych do localStorage
+    function saveDayData() {
+        const key = getStorageKey(modalState.date);
+        if (!key) return;
+
         localStorage.setItem(
-            modalState.date?.toISOString().split("T")[0], // save only date part as key
+            key,
             JSON.stringify({
                 mood,
                 description,
             })
         );
+    }
+
+    // Reaktywnie ładuj dane gdy zmienia się data
+    $effect(() => {
+        if (modalState.isModalVisible && modalState.date) {
+            loadDayData();
+        }
+    });
+
+    // Automatycznie zapisuj dane gdy się zmieniają
+    $effect(() => {
+        if (modalState.isModalVisible && modalState.date && (mood !== null || description !== "")) {
+            saveDayData();
+        }
+    });
+
+    function closeModal() {
+        saveDayData();
+        modalState.isModalVisible = false;
     }
 </script>
 

@@ -3,7 +3,7 @@
     import { modalState } from "$lib/monthModal.svelte.js";
     import Modal from "../Modal.svelte";
 
-    let { day } = $props();
+    let { day, dayIndex } = $props();
     let element = $state();
 
     function toggleModal() {
@@ -16,10 +16,21 @@
     }
 </script>
 
-{#if day?.date}
-    <button bind:this={element} type="button" onclick={toggleModal} class={["month-day"]}>
-        <div class="text-2xl text-left pl-2">{day.date?.getDate()}</div>
-    </button>
-{:else}
-    <div type="button" class={["month-day", "empty-day"]}></div>
-{/if}
+{#key day?.id}
+    {#if day?.date}
+        <button
+            bind:this={element}
+            type="button"
+            onclick={toggleModal}
+            class={["month-day", day.hasData ? "has-data" : ""]}
+            in:scale={{ duration: 200, delay: dayIndex * 10 }}
+        >
+            <div class="text-2xl text-left pl-2">{day.date?.getDate()}</div>
+            {#if day.hasData}
+                <div class="data-indicator"></div>
+            {/if}
+        </button>
+    {:else}
+        <div type="button" class={["month-day", "empty-day"]} in:scale={{ duration: 200, delay: dayIndex * 10 }}></div>
+    {/if}
+{/key}

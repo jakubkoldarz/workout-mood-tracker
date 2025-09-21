@@ -1,11 +1,37 @@
 <script>
     import { getMonthRows } from "$lib/utils/date";
     import { getContext } from "svelte";
+    import { browser } from "$app/environment";
     import Modal from "../Modal.svelte";
     import MonthRow from "./MonthRow.svelte";
+    import { modalState } from "$lib/monthModal.svelte.js";
 
     let { currentDay } = $props();
     const monthRows = $derived(getMonthRows(currentDay));
+
+    let dataRefreshTrigger = $state(0);
+    let wasModalVisible = $state(false);
+
+    $effect(() => {
+        if (wasModalVisible && !modalState.isModalVisible) {
+            dataRefreshTrigger++;
+        }
+        wasModalVisible = modalState.isModalVisible;
+    });
+
+    const monthRowsWithData = $derived.by(() => {
+        dataRefreshTrigger;
+
+        return monthRows.map((row) =>
+            row.map((day) => {
+                if (!day?.date) return { ...day, hasData: false };
+
+                const key = day.date.toISOString().split("T")[0];
+                const data = localStorage.getItem(key);
+                return { ...day, hasData: data && data !== '{"mood":null,"description":""}' && data !== "null" };
+            })
+        );
+    });
     const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 </script>
 
@@ -15,7 +41,7 @@
             <div class="text-center">{day}</div>
         {/each}
     </div>
-    {#each monthRows as row, rowIndex}
+    {#each monthRowsWithData as row, rowIndex}
         <MonthRow {row} {rowIndex} />
     {/each}
 </div>
