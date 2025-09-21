@@ -104,7 +104,7 @@
             startingSize: modalState.size,
             finalSize: {
                 width: 600,
-                height: 825,
+                height: 855,
             },
         }}
         out:flyToCenter={{
@@ -113,7 +113,7 @@
             startingSize: modalState.size,
             finalSize: {
                 width: 600,
-                height: 825,
+                height: 855,
             },
         }}
     >
@@ -124,11 +124,10 @@
                     {modalState.day}
                     {new Date(modalState.date).toLocaleDateString("en-US", { month: "long", year: "numeric" })}
                 </h2>
-                <p class="text-gray-600 text-sm">How was your day?</p>
             </div>
 
             <!-- Mood Selection -->
-            <div class="bg-white/70 rounded-xl p-4 shadow-sm">
+            <div class="bg-white/50 rounded-xl p-4 shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
                     <span>😊</span> Mood
                 </h3>
@@ -147,7 +146,7 @@
             </div>
 
             <!-- Workout Section -->
-            <div class="bg-white/70 rounded-xl p-4 shadow-sm">
+            <div class="bg-white/50 rounded-xl p-4 shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
                     <span>💪</span> Physical Activity
                 </h3>
@@ -175,12 +174,15 @@
 
                 {#if hasWorkout}
                     <div class="grid grid-cols-2 gap-2 mt-3">
-                        {#each [{ value: "gym", label: "🏋️ Gym", color: "bg-red-100 text-red-800" }, { value: "running", label: "🏃 Running", color: "bg-green-100 text-green-800" }, { value: "cycling", label: "🚴 Cycling", color: "bg-blue-100 text-blue-800" }, { value: "swimming", label: "🏊 Swimming", color: "bg-cyan-100 text-cyan-800" }, { value: "yoga", label: "🧘 Yoga", color: "bg-purple-100 text-purple-800" }, { value: "other", label: "⚡ Other", color: "bg-gray-100 text-gray-800" }] as workout}
+                        {#each [{ value: "gym", emoji: "🏋️", label: "Gym", color: "bg-red-100 text-red-800" }, { value: "running", emoji: "🏃‍♂️", label: "Running", color: "bg-green-100 text-green-800" }, { value: "yoga", emoji: "🧘‍♀️", label: "Yoga", color: "bg-purple-100 text-purple-800" }, { value: "other", emoji: "⚡", label: "Other", color: "bg-gray-100 text-gray-800" }] as workout}
                             <button
                                 type="button"
                                 class="workout-btn {workoutType === workout.value ? 'selected' : ''} {workout.color}"
                                 onclick={() => (workoutType = workout.value)}
                             >
+                                <span class="bg-white/70 rounded-full p-1 mr-2 text-xl">
+                                    {workout.emoji}
+                                </span>
                                 {workout.label}
                             </button>
                         {/each}
@@ -189,7 +191,7 @@
             </div>
 
             <!-- Notes Section -->
-            <div class="bg-white/70 rounded-xl p-4 shadow-sm flex-1">
+            <div class="bg-white/50 rounded-xl p-4 shadow-sm flex-1">
                 <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
                     <span>📝</span> Notes
                 </h3>
@@ -207,7 +209,7 @@
             <!-- Close Button -->
             <button
                 onclick={closeModal}
-                class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                class="bg-white/90 cursor-pointer backdrop-blur-sm text-gray-700 px-6 py-3 rounded-xl font-medium shadow-md hover:shadow-lg hover:bg-white border border-gray-200 transition-all duration-200"
             >
                 Save & Close
             </button>

@@ -24,6 +24,7 @@ export function flyToCenter(node, { duration, startingPosition, startingSize, fi
     const heightDiff = fromHeight - toHeight;
 
     node.style.position = "fixed";
+    node.style.cursor = "default";
 
     return {
         duration,
