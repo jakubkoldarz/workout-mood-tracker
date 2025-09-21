@@ -1,5 +1,5 @@
 <script>
-    import { getMonthRows } from "$lib/utils/date";
+    import { getMonthRows, getDateKey } from "$lib/utils/date";
     import { getContext } from "svelte";
     import { browser } from "$app/environment";
     import Modal from "../Modal.svelte";
@@ -26,9 +26,9 @@
             row.map((day) => {
                 if (!day?.date) return { ...day, hasData: false };
 
-                const key = day.date.toISOString().split("T")[0];
+                const key = getDateKey(day.date);
                 const data = localStorage.getItem(key);
-                return { ...day, hasData: data && data !== '{"mood":null,"description":""}' && data !== "null" };
+                return { ...day, hasData: data && data !== '{"mood":null,"description":""}' && data !== "null", data };
             })
         );
     });

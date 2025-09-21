@@ -93,3 +93,16 @@ export function getMonthRows(date = new Date()) {
 
     return rows;
 }
+
+/**
+ * Tworzy klucz localStorage dla danej daty (unika problemów z timezone)
+ * @param {Date} date - Data dla której tworzyć klucz
+ * @returns {string} Klucz w formacie YYYY-MM-DD
+ */
+export function getDateKey(date) {
+    if (!date) return null;
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+}

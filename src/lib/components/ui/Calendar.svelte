@@ -18,7 +18,7 @@
     <nav class="flex justify-center gap-4 items-center">
         <button onclick={prevMonth} type="button" class="button">Prev</button>
         <span class="w-32 text-center text-lg">
-            {currentDay.toLocaleDateString("default", { month: "long", year: "numeric" })}
+            {currentDay.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
         </span>
         <button onclick={nextMonth} type="button" class="button">Next</button>
     </nav>

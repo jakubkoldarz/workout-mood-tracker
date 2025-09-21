@@ -5,6 +5,15 @@
 
     let { day, dayIndex } = $props();
     let element = $state();
+    let emoji = $derived.by(() => {
+        if (!day?.hasData || !day.data) return null;
+        try {
+            const parsed = JSON.parse(day.data);
+            return parsed.mood || null;
+        } catch {
+            return null;
+        }
+    });
 
     function toggleModal() {
         const rect = element.getBoundingClientRect();
@@ -27,7 +36,9 @@
         >
             <div class="text-2xl text-left pl-2">{day.date?.getDate()}</div>
             {#if day.hasData}
-                <div class="data-indicator"></div>
+                <div class="data-indicator">
+                    {emoji}
+                </div>
             {/if}
         </button>
     {:else}
