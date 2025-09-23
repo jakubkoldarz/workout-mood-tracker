@@ -33,11 +33,15 @@ body {
         }
 
         .mood-indicator {
-            @apply text-lg leading-none bg-white/95 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center shadow-lg border border-purple-300/40;
+            @apply text-lg leading-none bg-white/95 backdrop-blur-sm rounded-full w-7 h-7 flex items-center justify-center shadow-lg border border-purple-300/40;
         }
 
         .workout-indicator {
-            @apply text-lg leading-none bg-white/95 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center shadow-lg border border-purple-300/40;
+            @apply text-lg leading-none bg-white/95 backdrop-blur-sm rounded-full w-7 h-7 flex items-center justify-center shadow-lg border border-purple-300/40;
+        }
+
+        .study-indicator {
+            @apply text-lg leading-none bg-white/95 backdrop-blur-sm rounded-full w-7 h-7 flex items-center justify-center shadow-lg border border-purple-300/40;
         }
 
         .button {

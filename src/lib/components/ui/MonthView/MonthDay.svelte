@@ -25,6 +25,16 @@
         }
     });
 
+    let hasStudied = $derived.by(() => {
+        if (!day?.hasData || !day.data) return false;
+        try {
+            const parsed = JSON.parse(day.data);
+            return parsed.hasStudied || false;
+        } catch {
+            return false;
+        }
+    });
+
     let workoutType = $derived.by(() => {
         if (!day?.hasData || !day.data) return null;
         try {
@@ -94,6 +104,11 @@
                         <div class="workout-indicator" title="Workout completed">
                             {workoutEmoji}
                         </div>
+                    {/if}
+
+                    <!-- Study indicator -->
+                    {#if hasStudied}
+                        <div class="study-indicator" title="Study session completed">📖</div>
                     {/if}
                 </div>
 

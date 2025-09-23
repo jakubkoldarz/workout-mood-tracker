@@ -11,6 +11,7 @@
     let mood = $state(null);
     let description = $state("");
     let hasWorkout = $state(false);
+    let hasStudied = $state(false);
     let workoutType = $state("");
 
     function getStorageKey(date) {
@@ -28,18 +29,21 @@
                 mood = data.mood || null;
                 description = data.description || "";
                 hasWorkout = data.hasWorkout || false;
+                hasStudied = data.hasStudied || false;
                 workoutType = data.workoutType || "";
             } catch (e) {
                 console.error("Error parsing saved data:", e);
                 mood = null;
                 description = "";
                 hasWorkout = false;
+                hasStudied = false;
                 workoutType = "";
             }
         } else {
             mood = null;
             description = "";
             hasWorkout = false;
+            hasStudied = false;
             workoutType = "";
         }
     }
@@ -54,6 +58,7 @@
                 mood,
                 description,
                 hasWorkout,
+                hasStudied,
                 workoutType,
             })
         );
@@ -71,7 +76,7 @@
         if (
             modalState.isModalVisible &&
             modalState.date &&
-            (mood !== null || description !== "" || hasWorkout || workoutType !== "")
+            (mood !== null || description !== "" || hasWorkout || hasStudied || workoutType !== "")
         ) {
             saveDayData();
         }
@@ -104,7 +109,7 @@
             startingSize: modalState.size,
             finalSize: {
                 width: 600,
-                height: 770,
+                height: 820,
             },
         }}
         out:flyToCenter={{
@@ -113,7 +118,7 @@
             startingSize: modalState.size,
             finalSize: {
                 width: 600,
-                height: 770,
+                height: 820,
             },
         }}
     >
@@ -148,8 +153,29 @@
             <!-- Workout Section -->
             <div class="bg-white/50 rounded-xl p-4 shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                    <span>💪</span> Physical Activity
+                    <span>💪</span> Activity
                 </h3>
+
+                <div class="flex items-center gap-3 mb-3">
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <!-- Custom Checkbox -->
+                        <div class="relative">
+                            <input type="checkbox" bind:checked={hasStudied} class="sr-only" />
+                            <div class="custom-checkbox {hasStudied ? 'checked' : ''}">
+                                {#if hasStudied}
+                                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd"
+                                        ></path>
+                                    </svg>
+                                {/if}
+                            </div>
+                        </div>
+                        <span class="text-gray-700 font-medium">I studied today</span>
+                    </label>
+                </div>
 
                 <div class="flex items-center gap-3 mb-3">
                     <label class="flex items-center gap-3 cursor-pointer">
